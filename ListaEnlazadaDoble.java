@@ -73,8 +73,8 @@ public class ListaEnlazadaDoble {
     public Nodo quickSort(Nodo cola, Nodo cabeza) {
         if (cola != null && cabeza != null && cola != cabeza && cola != cabeza.punteroCola) {
             Nodo pivote = particion(cola, cabeza);
-            quickSort(cola, pivote.punteroCola); 
-            quickSort(pivote.punteroCabeza, cabeza); 
+            quickSort(cola, pivote.punteroCola); //inicio, pivote -1
+            quickSort(pivote.punteroCabeza, cabeza); //pivote +1, fin
         }
         return cabeza;
     }
@@ -85,14 +85,14 @@ public class ListaEnlazadaDoble {
         int pivote = cabeza.dato;
         int nodoAuxiliar;
 
-        for (Nodo nodoIterador = cola; nodoIterador != cabeza; nodoIterador = nodoIterador.punteroCabeza) {
+        for (Nodo i = cola; i != cabeza; i = i.punteroCabeza) {
 
-            if (nodoIterador.dato <= pivote) {
+            if (i.dato <= pivote) {
 
                 nodoAuxiliar = nodoMenor.dato;
 
-                nodoMenor.dato = nodoIterador.dato;
-                nodoIterador.dato = nodoAuxiliar;
+                nodoMenor.dato = i.dato;
+                i.dato = nodoAuxiliar;
                 nodoMenor = nodoMenor.punteroCabeza;
 
             }
